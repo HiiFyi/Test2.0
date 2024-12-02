@@ -530,6 +530,7 @@ async def filter_episodes_cb_handler(client: Client, query: CallbackQuery):
 
     files, offset, total_results = await get_search_results(chat_id, search, offset=0, filter=True)
     if not files:
+        await client.send_message(req_channel, f"#REQUESTED_MOVIES \n\n**CONTENT NAME:**`{search}` \n**REQUESTED BY:** `{message.from_user.first_name}` \n**USER ID:** `{message.from_user.id}`, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔺MARK AS DONE🔻", callback_data="close_data")]])")
         await query.answer("🚫 𝗡𝗼 𝗙𝗶𝗹𝗲 𝗪𝗲𝗿𝗲 𝗙𝗼𝘂𝗻𝗱 🚫", show_alert=1)
         return
     temp.GETALL[key] = files
